@@ -112,7 +112,8 @@ Start Game
 
 ## 📷 Screenshots (Optional)
 
-*Add screenshots of your game interface here*
+[looser-page](https://github.com/user-attachments/assets/cea488e6-c7df-4b3e-9e81-f807b61320db)
+
 
 ---
 
