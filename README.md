@@ -97,7 +97,7 @@ Start Game
 
 ## 💻 Repository
 
-👉 https://github.com/yourusername/card-game-ui
+👉 https://github.com/kanayodavid3-cmd/card-game
 
 ---
 
