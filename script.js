@@ -519,7 +519,7 @@ $(document).ready(function () {
         marketCardNum.html(fullDeck.length);
         if (x > shouldPick) {
           //if he has picked the right amount,
-          console.log('if ran and x is ' + x);
+
           clearInterval(picking); //stop the picking
           resetPick2();
           cpuTurn = setTimeout(cpuPlay, 1000);
@@ -731,7 +731,7 @@ $(document).ready(function () {
           //same for human
           let x = 1;
           let picking = setInterval(function () {
-            console.log('if ran and x is ' + x);
+
             x++;
             marketAnimate();
             marketCardNum.html(fullDeck.length);
@@ -834,7 +834,7 @@ $(document).ready(function () {
         }
       }
     }
-    console.log(cpuHand);
+
   }
 
   //THIS IS THE HUMAN'S TURN
@@ -973,8 +973,5 @@ $(document).ready(function () {
   $('.shape').click(choosing);
   $('#forBtns button').on('click', quest);
 
-  //cpuCardNum top is 9.333333969116211
-  //infoBox is 59.875
-  //difference is 50.5416660309
-  //console.log(cpuCardNum.offset().top);
+
 });
