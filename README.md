@@ -112,7 +112,12 @@ Start Game
 
 ## 📷 Screenshots (Optional)
 
-[looser-page](https://github.com/user-attachments/assets/cea488e6-c7df-4b3e-9e81-f807b61320db)
+![opening-screen](https://github.com/user-attachments/assets/fa68fc42-7092-465d-ae53-0050ef0301e8)
+![playing-screen](https://github.com/user-attachments/assets/39a88f2c-b98d-4bd0-a82c-21fdfebf978d)
+![playing-screen-with-ineed](https://github.com/user-attachments/assets/4ee19a01-567f-469a-966c-fd65e4e4436d)
+![winningpage](https://github.com/user-attachments/assets/ac9e05e7-64e9-46d0-ada2-a9706bb71a4c)
+![looser-page](https://github.com/user-attachments/assets/cea488e6-c7df-4b3e-9e81-f807b61320db)
+
 
 
 ---
