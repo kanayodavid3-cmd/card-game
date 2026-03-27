@@ -1,4 +1,4 @@
-# 🎮 Interactive Card Game (UI/UX Focused)
+# 🎮 Interactive Card Game
 
 ## 📌 Overview
 
@@ -110,7 +110,7 @@ Start Game
 
 ---
 
-## 📷 Screenshots (Optional)
+## 📷 Screenshots
 
 ![opening-screen](https://github.com/user-attachments/assets/fa68fc42-7092-465d-ae53-0050ef0301e8)
 ![playing-screen](https://github.com/user-attachments/assets/39a88f2c-b98d-4bd0-a82c-21fdfebf978d)
