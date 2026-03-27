@@ -91,7 +91,7 @@ Start Game
 
 ## 🚀 Live Demo
 
-👉 [Play the game here](https://yourusername.github.io/card-game-ui/)
+👉 [Play the game here](https://kanayodavid3-cmd.github.io/card-game/)
 
 ---
 
