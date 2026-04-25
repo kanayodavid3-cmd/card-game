@@ -85,7 +85,7 @@ Start Game
 
 * HTML
 * CSS
-* JavaScript (using JQuery)
+* Vanilla JavaScript
 
 ---
 
