@@ -112,11 +112,11 @@ Start Game
 
 ## 📷 Screenshots
 
-![opening-screen](assets/Screenshot 2026-04-25 171326.png)
-![playing-screen](assets/Screenshot 2026-04-25 171401.png)
-![playing-screen-with-ineed](assets/Screenshot 2026-04-25 171929.png)
-![winningpage](assets/Screenshot 2026-04-25 171847.png)
-![looser-page](assets/Screenshot 2026-04-25 172119.png)
+![opening-screen](assets/opening-page.png)
+![playing-screen](assets/playing-page.png)
+![playing-screen-with-ineed](assets/ineed.png)
+![winningpage](assets/winning-page.png)
+![looser-page](assets/loser-page.png)
 
 
 
