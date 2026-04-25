@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naija Whot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="question-page">
+        <div>
+            <div id="tiny-design-qp"></div>
+            <div id="tiny-design-qp"></div>
+            <p>How do you want the game to end?</p>
+            <div id="buttons-qp">
+                <button type="button"></button>
+                <button type="button"></button>
+            </div>
+        </div>
+    </section>
+    <section id="playing-page" class="invisible">
+        <section id="top-section">
+            <section id="info-box" class="hide"></section>
+            <section id="shape-needed" class="shape-needed-hide hide"><img src="assets/circle.png" alt="circle" /></section>
+            <section id="shapes-box" class="shapes-box hide">
+                <div id="triangle" class="shape"><img src="assets/triangle.png"  alt="triangle" /></div>
+                <div id="circle" class="shape"><img src="assets/circle.png"  alt="circle" /></div>
+                <div id="square" class="shape"><img src="assets/square.png"  alt="square" /></div>
+                <div id="star" class="shape"><img src="assets/star.png"  alt="star" /></div>
+                <div id="cross" class="shape"><img src="assets/cross.png"  alt="cross" /></div>
+            </section>
+            <div id="cpu-card-num"><p>0</p></div>
+            <div id="played-cards-slot"></div>
+            <div id="market-num"><p>0</p></div>
+            <div id="market-slot">
+                <span id="noctp" class="hide"></span><!--number of cards to pick-->
+                <img src="assets/cardBack.png" />
+            </div>
+        </section>
+        <section id="player-cards-slot"></section>
+    </section>
+    <section id="winning-page" class="invisible">
+        <p>
+            <span>CHECK-UP. YOU WON! CONGRATULATIONS</span>
+            <br>
+            <span class="play-again" onclick="reset()">Play Again</span>
+        </p>
+    </section>
+    <section id="winning-page2" class="invisible">
+        <p>Your cards</p>
+        <div id="slot-for-cards"></div>
+        <p>CPU's cards</p>
+        <div id="slot-for-cards"></div>
+        <p>Your score is: <span>15</span></p>
+        <p>CPU's score is: <span>15</span></p>
+        <p>
+            <span>It was a tie!</span>
+            <span class="play-again" onclick="reset()">Play Again</span>
+        </p>
+    </section>
+</body>
+<script src="script.js"></script>
+</html>

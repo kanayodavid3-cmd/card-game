@@ -1,0 +1,652 @@
+body {
+  background: url(assets/background.jpg) center / cover no-repeat fixed;
+  /*<bg-image> <bg-position> / <bg-size> <repeat-style> <attachment> <bg-clip> <bg-origin> <'background-color'>*/
+  min-width: 313px;
+  min-height: 200px;
+  margin: 0px;
+  position: relative;
+}
+.invisible{
+    visibility: hidden;
+}
+#playing-page{
+    --percentV: 14.5;   /*percent value of the cards*/
+    width: calc(100% - 16px);
+    max-width: 1563px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    position: absolute;
+    height: fit-content;
+}
+#top-section{
+    position: relative;
+    width: 100%;
+    aspect-ratio: calc(200 / (3 * var(--percentV))); /*formula is 200/3x where x is width percent of the cards*/
+    min-height: 96px;
+}
+#top-section > div, #top-section > section{
+    position: absolute;
+}
+#cpu-card-num, #market-num{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #611d1d;
+    cursor: default;
+    font-family: monospace;
+    font-size: 2.8em;
+    color: white;
+}
+#cpu-card-num{
+    left: 18%;
+}
+#cpu-card-num > p, #market-num p{
+    margin: 0;
+    height: fit-content;
+    width: fit-content;
+}
+#cpu-card-num > div{
+    position: absolute;
+    height: 100%;
+    border-radius: 3px;
+    width: 60%;
+}
+#played-cards-slot, #market-slot, #player-cards-slot > div{
+    width: calc(var(--percentV) * 1%);
+    aspect-ratio: 2/3;
+    min-width: 64px;
+    min-height: 95px;
+}
+#played-cards-slot{
+    left: 50%;
+    transform: translateX(-50%);
+}
+#market-slot{
+    right: 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #611d1d;
+    cursor: pointer;
+}
+#market-slot > img{
+    width: 96%;
+    height: 96%;
+ }
+#market-slot > div{
+    width: 25%;
+    height: 25%;
+    position: absolute;
+}
+#market-slot > span{
+    position: absolute;
+    font-family: monospace;
+    font-size: 11em;
+    color: darkgreen;
+    pointer-events: none;
+}
+#market-num{
+    right: 15.4%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#player-cards-slot{
+    height: fit-content;
+    margin-top: 50px;
+    display: flex;
+    column-gap: 3px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+.cards{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+    overflow: hidden;
+    background-color: white;
+}
+.cards > img, #shape-needed > img{
+    height: 100%;
+    width: 100%;
+}
+.played-cards{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.player-cards{
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.player-cards:hover{
+  box-shadow: 12px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  z-index: 1;
+}
+.blinker{
+    --content: '';
+    position: relative;
+}
+.blinker::before{
+    content: var(--content);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    font-family: Arial black;
+  background-color: rgba(250, 0, 0, 0.65);
+}
+
+.show2{
+    display: flex;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+
+#question-page{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.748);
+}
+#question-page > div{
+    background-color: rgb(255, 236, 208);
+    border: 3px solid darkred;
+    border-radius: 3px;
+    width: 30%;
+    height: fit-content;
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    max-width: 484px;
+}
+#tiny-design-qp{
+    height: 20px;
+    width: 55px;
+    background-color: darkred;
+    position: absolute;
+    top: -3px;
+}
+#tiny-design-qp:nth-of-type(1){
+    transform: skewX(45deg);
+    right: 8px;
+}
+#tiny-design-qp:nth-of-type(2){
+    right: -2px;
+}
+#question-page p{
+    width: 95%;
+    font-size: 1.15em;
+    margin: 40px 0px 0px 50%;
+    transform: translateX(-50%);
+}
+#buttons-qp{
+    width: 95%;
+    height: fit-content;
+    margin: 20px 0px 20px 50%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateX(-50%);
+}
+#buttons-qp > button{
+    height: fit-content;
+    width: 35%;
+    padding: 2% 1.5% 2% 1.5%;
+    border-radius: 10px;
+    background: linear-gradient(to right, rgb(0, 100, 0) 0%, rgb(0, 130, 0) 25%, rgb(0, 160, 0) 50%, rgb(0, 190, 0) 75%, rgb(0, 210, 0) 94%, rgb(197, 255, 197) 100%);
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    border: none;
+}
+.clicked{
+    scale: 0.9;
+}
+#shape-needed{
+    transition: transform 0.3s;
+}
+
+#info-box{
+  color: #611d1d;
+  width: 300px;
+  height: fit-content;
+  top: 55px;
+  font-weight: bolder;
+  line-height: 50px;
+  font-size: 3em;
+  text-wrap: wrap;
+  font-family: cursive;
+  cursor: default;
+}
+
+.shapes-box{
+    background-color: bisque;
+    width: 400px;
+    height: fit-content;
+    border-radius: 9px;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 12px;
+}
+.shape > img{
+    width: 100%;
+}
+.shape{
+  width: 27.5%;
+  height: fit-content;
+  margin-top: 12px;
+  cursor: pointer;
+  position: relative;
+}
+.shape::before{
+    content: '';
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.shape:hover::before{
+    background-color: rgba(0, 0, 0, 0.566);
+}
+
+
+.winner{
+    color: blue;
+}
+.loser{
+    color: red;
+}
+#winning-page{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  min-height: 200px;
+  text-align: center;
+  font-weight: bold;
+  font-family: cursive;
+}
+#winning-page p{
+    margin: 50vh 0px 0px 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6.5em;
+    width: 90%;
+    display: block;
+}
+.play-again{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.play-again:hover{
+    color: rgb(89, 15, 15);
+}
+
+#winning-page2{
+    position: absolute;
+    width: calc(100% - 64px);
+    margin-top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    font-weight: bold;
+    font-family: cursive;
+    color: black;
+    padding-bottom: 50px;
+}
+#winning-page2 p{
+    margin: 0;
+}
+#winning-page2 > p:nth-of-type(3),
+#winning-page2 > p:nth-of-type(4),
+#winning-page2 > p:nth-of-type(5){
+    text-align: center;
+}
+#slot-for-cards{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px 0px 30px 0px;
+}
+#slot-for-cards .cards{
+    width: 14.5%;
+    aspect-ratio: 2/3;
+    min-width: 64px;
+    min-height: 95px;
+ }
+
+/*      Animations      */
+.move-scale{
+    --finalHeight: auto;
+    --finalWidth: auto;
+    --duration: 0.5s;
+    --finalTranslateX: 0px;
+    --finalTranslateY: 0px;
+    animation: moveScale var(--duration) forwards;
+}
+@keyframes moveScale {
+    0%{
+        transform: translateX(0px) translateY(0px);
+    }
+    100%{
+        transform: translateX(var(--finalTranslateX)) translateY(var(--finalTranslateY));
+        height: var(--finalHeight);
+        width: var(--finalWidth);
+    }
+}
+.fade-in{
+    --display: block;
+    display: var(--display);
+    animation: fadeIn 0.7s forwards;
+}
+.fade-out{
+    animation: fadeOut 0.7s forwards;
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+
+.bounce{
+    animation: bounce-down 1s forwards ease-out;
+}
+@keyframes bounce-down {
+    0%{
+        transform: translateY(-600px);
+    }
+    10%{
+        transform: translateY(0px);
+    }
+    25%{
+        transform: translateY(-40px);
+    }
+    40%{
+        transform: translateY(0px);
+    }
+    55%{
+        transform: translateY(-20px);
+    }
+    70%{
+        transform: translateY(0px);
+    }
+    85%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+
+.explode{
+    animation: explode-out 1s forwards;
+    --transform: 0px, 0px;
+}
+@keyframes explode-out {
+    0%{
+    opacity: 1;
+    transform: translateY(0px);
+    }
+    100%{
+        transform: translate(var(--transform));
+        opacity: 0;
+    }
+}
+
+.shape-needed-show{
+    transform: translateX(0px);
+}
+.shape-needed-hide{
+    transform: translateX(-100px);
+}
+
+
+@media (max-width: 1280px){
+    
+    #cpu-card-num, #market-num{
+        font-size: 2.4em;
+    }
+    #info-box{
+        width: 280px;
+        font-size: 2.5em;
+    }
+    .shapes-box{
+        width: 350px;
+    }
+    #question-page > div{
+        width: 35%;
+    }
+    #buttons-qp > button{
+        font-size: 0.95em;
+    }
+    .blinker::before{
+        font-size: 1.4em;
+    }
+    #winning-page p{
+        font-size: 5.5em;
+    }
+}
+@media (max-width: 1024px){
+
+    #info-box{
+        width: 235px;
+        font-size: 2.2em;
+        line-height: 35px;
+        top: 40px;
+    }
+    .shapes-box{
+        width: 285px;
+    }
+    #cpu-card-num, #market-num{
+        font-size: 2.1em;
+    }
+    #question-page > div{
+        width: 44%;
+    }
+    #buttons-qp > button{
+        font-size: 0.9em;
+    }
+    #market-slot > span{
+        font-size: 8.2em;
+    }
+    .blinker::before{
+        font-size: 1.2em;
+    }
+    #winning-page p{
+        font-size: 4.1em;
+    }
+    #winning-page2{
+        font-size: 2.8em;
+    }
+}
+@media (max-width: 768px){
+    #playing-page{
+        width: calc(100% - 6px)
+    }
+    #info-box{
+        width: 200px;
+        font-size: 1.8em;
+        line-height: 30px;
+        top: 35px;
+    }
+    .shapes-box{
+        width: 230px;
+    }
+    #cpu-card-num, #market-num{
+        font-size: 2em;
+    }
+    #question-page > div{
+        width: 55%;
+    }
+    #buttons-qp > button{
+        font-size: 0.87em;
+    }
+    #market-slot > span{
+        font-size: 6.8em;
+    }
+    .blinker::before{
+        font-size: 1.1em;
+    }
+    #winning-page p{
+        font-size: 3.3em;
+        width: 95%;
+    }
+    #winning-page2{
+        font-size: 2.5em;
+    }
+}
+@media (max-width: 596px){
+    
+    #info-box{
+        width: 155px;
+        font-size: 1.5em;
+        line-height: 28px;
+    }
+    .shapes-box{
+        left: 50%;
+        translate: -50%;
+        width: calc(100% - 64px);
+        top: 105%;
+    }
+    #cpu-card-num, #market-num{
+        font-size: 1.5em;
+    }
+    #question-page > div{
+        width: 70%;
+    }
+    #buttons-qp > button{
+        width: 35.6%;
+        font-size: 0.8em;
+    }
+    #market-slot > span{
+        font-size: 4.8em;
+    }
+    #player-cards-slot{
+        margin-top: 70px;
+    }
+    .blinker::before{
+        font-size: 0.85em;
+    }
+    #winning-page p{
+        font-size: 2.4em;
+    }
+    #winning-page2{
+        font-size: 2.2em;
+        width: calc(100% - 16px);
+    }
+}
+@media (max-width: 425px){
+    
+    #cpu-card-num, #market-num{
+        font-size: 1.2em;
+    }
+    #question-page > div{
+        width: 85%;
+    }
+    #question-page p{
+        font-size: 1.04em;
+    }
+    #buttons-qp > button{
+        width: 40%;
+        font-size: 0.79em;
+    }
+    #tiny-design-qp{
+        height: 15px;
+        width: 40px;
+    }
+    #market-slot > span{
+        font-size: 4em;
+    }
+    #market-num{
+        right: 66px;
+    }
+    #winning-page p{
+        font-size: 2.1em;
+    }
+    #winning-page2{
+        font-size: 1.9em;
+        width: calc(100% - 8px);
+    }
+    #slot-for-cards .cards{
+        width: 20%;
+    }
+    #info-box{
+        width: 125px;
+        font-size: 1.2em;
+        line-height: 22px;
+        top: 20px;
+    }
+}
+
+@media (max-width: 375px) {
+    #winning-page p{
+        font-size: 1.75em;
+    }
+    #winning-page2{
+        font-size: 1.6em;
+    }
+    #slot-for-cards .cards{
+        width: 25%;
+    }
+    #info-box{
+        width: 100px;
+        font-size: 1em;
+        font-weight: 540;
+        top: 23px;
+    }
+}
+
+@media (max-width: 320px){
+    
+    #cpu-card-num, #market-num{
+        font-size: 1em;
+    }
+    #question-page > div{
+        width: 90%;
+    }
+    #question-page p{
+        font-size: 1.1em;
+    }
+    #buttons-qp > button{
+        width: 40%;
+        font-size: 0.8em;
+    }
+    .blinker::before{
+        font-size: 0.8em;
+    }
+}
+
