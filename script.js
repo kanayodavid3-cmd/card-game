@@ -388,7 +388,7 @@ const states = {
                                 setTimeout(() => {
                                     newSB.remove();
                                     responsive.toggleShapesBox();
-                                    window.removeEventListener('resize', responsive.toggleShapesBox);
+                                    window.removeEventListener("resize", responsive.toggleShapesBox);
                                 }, 1050);
                             }
                             shapesBox.classList.remove('bounce');
@@ -423,9 +423,11 @@ function pickRandom(array) {
 const responsive = {
     //should happen every time the page resizes every time
     main: function(){
-        const {marketNumSlot, cpuCardSlot, shapeNeeded} = htmls;
-        const ccsHeight = cpuCardSlot.clientHeight;//cpuCardSlot height
+        const {marketNumSlot, cpuCardSlot, shapeNeeded, playedCardsSlot, playingPage} = htmls;
+        //set cards height property for css to use
+        playingPage.style.setProperty('--cardsHeight', playedCardsSlot.clientHeight + 'px');
         //market & CPU card num
+        const ccsHeight = cpuCardSlot.clientHeight;//cpuCardSlot height
         marketNumSlot.style.width = ccsHeight+'px';
         cpuCardSlot.style.width = ccsHeight+"px";
         //shape needed
@@ -435,28 +437,26 @@ const responsive = {
     //should happen only while shapeNeeded is visible
     setIneed: function(){
         // positions shapeNeeded under info box
-        responsive.main();
-        const {shapeNeeded, infoBox} = htmls;
-        const inbBottom = dimensions(infoBox);//infoBox bottom
-        if (inbBottom.offsetY && inbBottom.height){
-            shapeNeeded.style.top = inbBottom.offsetY + inbBottom.height + 'px';
-            shapeNeeded.style.bottom = '';
-        }
-        else{//default position if infobox is not there
-            shapeNeeded.style.bottom = '10px';
-            shapeNeeded.style.top = "";
-        }
+        responsive.main();  //gives it it's height and width
+        const {shapeNeeded, infoBox, playedCardsSlot} = htmls;
+        const inbBottom = dimensions(infoBox).bottom;//infoBox bottom
+        const defaultTop = playedCardsSlot.clientHeight - shapeNeeded.clientHeight - 10;
+        shapeNeeded.style.setProperty('--top2', defaultTop + 'px');
+        if (inbBottom) shapeNeeded.style.setProperty('--top', inbBottom + 'px');
+        //default position if infobox is not there
+        else shapeNeeded.style.setProperty('--top', defaultTop + 'px');
     },
-    //should happen only while shapesBox is visible
+    //happens while shapes box is visible
     toggleShapesBox: function(){
-        const {shapesBox, playerCardsSlot} = htmls;
-        const topAdjustment = dimensions(shapesBox).height + 20;
-        if(topAdjustment && window.innerWidth <= 596){
-            //the margin on playerCardsSlot made it look awkward, so I reduced it to half
-            playerCardsSlot.style.marginTop = `${topAdjustment}px`;
-        }
-        else playerCardsSlot.style.marginTop = '';
+        const {topSection, shapesBox, playedCardsSlot} = htmls;
+        const sbBottom = playedCardsSlot.clientHeight + shapesBox.clientHeight + 5;//bottom property changes due to bounce, 5 is like margin
+        if (shapesBox.clientHeight && window.innerWidth <= 596) topSection.style.height = sbBottom + 'px';
+        else if(shapesBox.clientHeight && window.innerWidth > 596) topSection.style.height = shapesBox.clientHeight > playedCardsSlot.clientHeight
+        ? shapesBox.clientHeight + 'px' : playedCardsSlot.clientHeight + 'px';
+        else topSection.style.height = '';
+        
     }
+        
 }
 
 //question page buttons
@@ -484,10 +484,12 @@ function toggleInfo(message){
         infoBox.innerHTML = message;
         infoBox.classList.add('show');
         infoBox.classList.remove('hide');
+        responsive.main();
     }
     else {
         infoBox.classList.remove('show');
         infoBox.classList.add('hide');
+        responsive.main();
     }
 }
 
@@ -500,12 +502,13 @@ function chooseIneed(){
 }
 
 function dimensions(element){
-    let {top, left} = element.getBoundingClientRect();
+    let {top, left, bottom} = element.getBoundingClientRect();
     const {height, width} = window.getComputedStyle(element);
     top+=window.scrollY;
     left+=window.scrollX;
-    return {offsetX:left, offsetY:top, height: parseFloat(height), width: parseFloat(width)};
-    //returns left as offsetX, top as offsetY, height as height, width as width 
+    bottom+=window.scrollY;
+    return {offsetX:left, offsetY:top, height: parseFloat(height), width: parseFloat(width), bottom: bottom};
+    //returns left as offsetX, top as offsetY, height as height, width as width, bottom as bottom
 }
 
 function updateNums(){
@@ -926,4 +929,4 @@ htmls.shapes.forEach(shape => shape.addEventListener('click', chooseIneed));
 
 
 
-//uncomment line 514 to see cpu's cards
+//uncomment line 517 to see cpu's cards
