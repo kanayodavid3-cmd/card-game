@@ -319,10 +319,11 @@ const states = {
                 },
     finishMethod: null,   //check-up only or count points
     setFinishMethod: function(e){
-        function clicked(e){
-            e.classList.add('clicked');
-            setTimeout(() => e.classList.remove('clicked'), 200);
+        function clicked(element){
+            element.classList.add('clicked');
+            setTimeout(() => element.classList.remove('clicked'), 200);
         }
+        //e here prevents the outer e.
         function verify(e){  //when answer yes or no
             qp_buttons(verify); //remove current event listeners
             clicked(e.target);
@@ -330,13 +331,20 @@ const states = {
                 setTimeout(startGame, 400);
             }
             else if (e.target.dataset.finish_method == 'no') {
-                setTimeout(() => qp_buttons(states.setFinishMethod, {text: "Count Points if market Finish", data: "count points"}, {text: "End With Check-up only", data: "check-up only"}), 400);
+                setTimeout(() => {
+                    p.innerHTML = "How do you want the game to end?";
+                    qp_buttons(states.setFinishMethod, {text: "Count Points if market Finish", data: "count points"}, {text: "End With Check-up only", data: "check-up only"})
+                }, 400);
             }
         }
+        const p = document.querySelector("#question-page p");
         qp_buttons(states.setFinishMethod); //remove current event listeners
         clicked(e.target);
         states.finishMethod = e.target.dataset.finish_method;
-        setTimeout(() => qp_buttons(verify, {text: 'No', data: "no"}, {text: "Yes", data: 'yes'}), 400);
+        setTimeout(() => {
+            p.innerHTML = "Are you Sure?";
+            qp_buttons(verify, {text: 'No', data: "no"}, {text: "Yes", data: 'yes'})
+        }, 400);
     },
     enabled: true,
     //prevent player from playing
@@ -462,14 +470,14 @@ const responsive = {
 //question page buttons
 //This changes the buttons text and associated data
 //                            {  text: "", data: ""  }
-function qp_buttons(callback, countPoints, check_upOnly){
-    if (countPoints && check_upOnly) {
+function qp_buttons(callback, rightBtn, leftBtn){
+    if (rightBtn && leftBtn) {
         htmls.cpBtn.addEventListener('click', callback);
         htmls.cuoBtn.addEventListener('click', callback);
-        htmls.cpBtn.innerHTML = countPoints.text;
-        htmls.cpBtn.dataset.finish_method = countPoints.data;
-        htmls.cuoBtn.innerHTML = check_upOnly.text;
-        htmls.cuoBtn.dataset.finish_method = check_upOnly.data;
+        htmls.cpBtn.innerHTML = rightBtn.text;
+        htmls.cpBtn.dataset.finish_method = rightBtn.data;
+        htmls.cuoBtn.innerHTML = leftBtn.text;
+        htmls.cuoBtn.dataset.finish_method = leftBtn.data;
     }
     else{
         htmls.cpBtn.removeEventListener('click', callback);
@@ -929,4 +937,4 @@ htmls.shapes.forEach(shape => shape.addEventListener('click', chooseIneed));
 
 
 
-//uncomment line 517 to see cpu's cards
+//uncomment line 525 to see cpu's cards
